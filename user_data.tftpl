@@ -1,0 +1,16 @@
+#!/bin/bash
+
+yum install -y kubernetes-client.x86_64
+
+mkdir ~/.kube
+
+kube_file=~/.kube/config
+
+echo '${kube_config}' > ~/.kube/config
+
+echo '${app_yml}' > ~/application.yml
+
+# 等待安全组联通
+sleep 10
+
+kubectl apply -f application.yml --validate=false
